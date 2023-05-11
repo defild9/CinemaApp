@@ -1,17 +1,18 @@
-import 'package:cinema_app/data/datasources/api_client.dart';
-import 'package:cinema_app/presentation/blocs/authentication/auth_state.dart';
-import 'package:cinema_app/presentation/blocs/comment/comment_bloc.dart';
-import 'package:cinema_app/presentation/blocs/theme/theme_bloc.dart';
-import 'package:cinema_app/presentation/blocs/theme/theme_state.dart';
-import 'package:cinema_app/presentation/pages/authentication_page.dart';
-import 'package:cinema_app/presentation/pages/main_page.dart';
+import 'package:cinema_app/features/data/datasources/api_client.dart';
+import 'package:cinema_app/features/presentation/blocs/authentication/auth_bloc.dart';
+import 'package:cinema_app/features/presentation/blocs/authentication/auth_event.dart';
+import 'package:cinema_app/features/presentation/blocs/authentication/auth_state.dart';
+import 'package:cinema_app/features/presentation/blocs/comment/comment_bloc.dart';
+import 'package:cinema_app/features/presentation/blocs/movie_sessions/movie_sessions_bloc.dart';
+import 'package:cinema_app/features/presentation/blocs/theme/theme_bloc.dart';
+import 'package:cinema_app/features/presentation/blocs/theme/theme_state.dart';
+import 'package:cinema_app/features/presentation/blocs/user_profile/user_profile_bloc.dart';
+import 'package:cinema_app/features/presentation/pages/main/authentication_page.dart';
+import 'package:cinema_app/features/presentation/pages/main/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'presentation/blocs/authentication/auth_bloc.dart';
-import 'presentation/blocs/authentication/auth_event.dart';
-import 'presentation/blocs/movie_sessions/movie_sessions_bloc.dart';
 
 
 void main() async{
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ThemeBloc>(
           create: (context) => ThemeBloc(),
+        ),
+        BlocProvider<UserProfileBloc>(
+          create: (context) => UserProfileBloc(apiClient: ApiClient()),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
